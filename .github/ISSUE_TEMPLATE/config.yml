@@ -1,0 +1,6 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📖 Documentación
+    url: https://github.com/franklinhuichi/endevix-cli-go/blob/master/README.md
+    about: Revisa la documentación antes de abrir un issue
+

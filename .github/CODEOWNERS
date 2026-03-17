@@ -1,0 +1,12 @@
+# CODEOWNERS - Define quién debe aprobar los cambios
+#
+# Los code owners son solicitados automáticamente para revisar
+# cuando alguien abre un Pull Request que modifica los archivos
+# que ellos poseen.
+#
+# Formato: <patrón de archivo>   <@usuario o @org/equipo>
+#
+# Descomenta y reemplaza con los usuarios/equipos reales:
+# * @tu-usuario
+# * @tu-org/tu-equipo
+

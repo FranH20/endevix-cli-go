@@ -1,0 +1,7 @@
+{
+  "service_name": "endevix",
+  "port": 8080,
+  "environment": "dev",
+  "enabled": true,
+  "dependencies": ["postgres", "redis"]
+}

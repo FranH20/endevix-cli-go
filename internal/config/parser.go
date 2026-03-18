@@ -7,7 +7,7 @@ import (
 
 func ParserJson(jsonData string) {
 
-	var structJsonData Model
+	var structJsonData map[string]interface{}
 
 	err := json.Unmarshal([]byte(jsonData), &structJsonData)
 	if err != nil {
@@ -15,5 +15,8 @@ func ParserJson(jsonData string) {
 		panic(err)
 	}
 
-	fmt.Println("json parsed successfully: ", structJsonData)
+	for key, value := range structJsonData {
+		fmt.Println("key:", key, "value:", value)
+	}
+
 }

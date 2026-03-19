@@ -18,5 +18,5 @@ func readFile(path string) string {
 
 func main() {
 	stringFile := readFile("/Users/franklinhuichi/GolandProjects/endevix-cli-go/testdata/valid.json")
-	config.ParserJson(stringFile)
+	config.Parse(config.FormatJSON, stringFile)
 }

@@ -1,22 +1,17 @@
 package config
 
-import (
-	"encoding/json"
-	"fmt"
-)
+import "fmt"
 
-func ParserJson(jsonData string) {
+func Parse(format Format, data string) {
+	// el switch pero con map
+	parseByFunc := parsersMap[format]
 
-	var structJsonData map[string]interface{}
-
-	err := json.Unmarshal([]byte(jsonData), &structJsonData)
+	// parsear ya sea yaml o json obtendré un map[string]interface{} para validar después con mi struct
+	parseData, err := parseByFunc(data)
 	if err != nil {
-		fmt.Println("error:", err)
-		panic(err)
+		fmt.Println("Error parsing data:", err)
+		return
 	}
 
-	for key, value := range structJsonData {
-		fmt.Println("key:", key, "value:", value)
-	}
-
+	fmt.Println("Parsed data:", parseData)
 }

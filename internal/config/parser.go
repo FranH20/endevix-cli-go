@@ -1,6 +1,7 @@
 package config
 
 import (
+	"encoding/json"
 	"fmt"
 )
 
@@ -9,13 +10,18 @@ func (f Format) Parser(data string) (map[string]interface{}, error) {
 	return parserFunc(data)
 }
 
-func Parse(format Format, data string) {
+func Parse(format Format, inputData string) (string, error) {
 	// el switch pero con map
-	doc, err := format.Parser(data)
+	jsonInputData, err := format.Parser(inputData)
 
 	if err != nil {
-		fmt.Println("Error parsing data:", err)
+		return "", fmt.Errorf("parse input: %w", err)
 	}
 
-	fmt.Println("Parsed data:", doc)
+	j, err := json.Marshal(jsonInputData)
+	if err != nil {
+		return "", fmt.Errorf("parse json: %w", err)
+	}
+
+	return string(j), err
 }

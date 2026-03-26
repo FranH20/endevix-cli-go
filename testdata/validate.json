@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "project_id",
+    "project_name",
+    "status",
+    "priority",
+    "currency",
+    "start_date",
+    "client"
+  ],
+  "properties": {
+    "project_id": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 50
+    },
+    "project_name": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 100
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "in_progress", "completed", "cancelled"]
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"]
+    },
+    "budget": {
+      "type": "number",
+      "minimum": 0
+    },
+    "currency": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 3
+    },
+    "is_active": {
+      "type": "boolean"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "client": {
+      "type": "object",
+      "required": [
+        "company_name",
+        "main_contact",
+        "contact_email",
+        "phone_number"
+      ],
+      "properties": {
+        "company_name": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "main_contact": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "contact_email": {
+          "type": "string",
+          "format": "email"
+        },
+        "phone_number": {
+          "type": "string",
+          "minLength": 7,
+          "maxLength": 20
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 30
+      }
+    },
+    "additional_notes": {
+      "type": "string",
+      "maxLength": 500
+    }
+  }
+}

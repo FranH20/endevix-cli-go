@@ -1,38 +1,45 @@
 package main
 
 import (
+	"endevix-cli-go/internal/cli"
 	"endevix-cli-go/internal/config"
 	"fmt"
-	"io"
 	"os"
 )
 
-func readFile(path string) string {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		fmt.Printf("Error reading file: %v\n", err)
-		panic(err)
+func main() {
+
+	if err := run(); err != nil {
+		fmt.Printf("Error: %v\n", err)
+		os.Exit(1)
 	}
-	fmt.Println("File read successfully")
-	return string(data)
+
 }
 
-func main() {
-	var data []byte
-	var err error
-
-	if len(os.Args) > 1 {
-		data, err = os.ReadFile(os.Args[1])
-	} else {
-		data, err = io.ReadAll(os.Stdin)
-	}
-
+func run() error {
+	// 1. Obtener el input data
+	inputData, err := cli.GetInput()
 	if err != nil {
-		fmt.Printf("Error reading file: %v\n", err)
-		panic(err)
+		return err
 	}
-	// /Users/franklinhuichi/GolandProjects/endevix-cli-go/testdata/valid.json
-	//;stringFile := readFile(string(data))
 
-	config.Parse(config.FormatJSON, string(data))
+	// 2. Obtener el input json format
+	jsonSchemaData, err := cli.GetJsonFormatData()
+	if err != nil {
+		return err
+	}
+
+	// 3. Parsear el input a json
+	jsonInput, err := config.Parse(config.FormatJSON, string(inputData))
+	if err != nil {
+		return err
+	}
+
+	// 4. Validar el json con el schema
+	err = config.Validate(string(jsonSchemaData), jsonInput)
+	if err != nil {
+		return err
+	}
+
+	return err
 }

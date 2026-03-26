@@ -1,7 +1,18 @@
 {
-  "service_name": "endevix",
-  "port": 8080,
-  "environment": "dev",
-  "enabled": true,
-  "dependencies": ["postgres", "redis"]
+  "project_id": "PRJ-001",
+  "project_name": "Migration Platform",
+  "status": "in_progress",
+  "priority": "high",
+  "budget": 15000,
+  "currency": "USD",
+  "is_active": true,
+  "start_date": "2026-03-19T10:00:00Z",
+  "client": {
+    "company_name": "endevix",
+    "main_contact": "Carlos Huichi",
+    "contact_email": "carlos@example.com",
+    "phone_number": "987654321"
+  },
+  "tags": ["backend", "api", "go"],
+  "additional_notes": "Internal migration project"
 }

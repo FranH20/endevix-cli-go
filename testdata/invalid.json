@@ -1,0 +1,19 @@
+{
+  "project_id": "A",
+  "project_name": "X",
+  "status": "doing",
+  "priority": "urgent",
+  "budget": -100,
+  "currency": "US",
+  "is_active": "true",
+  "start_date": "25-03-2026",
+  "client": {
+    "company_name": "A",
+    "main_contact": "B",
+    "contact_email": "no-es-email",
+    "phone_number": "123"
+  },
+  "tags": ["a", ""],
+  "additional_notes": "Este JSON debe fallar validacion de schema"
+}
+

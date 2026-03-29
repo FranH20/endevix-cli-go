@@ -5,20 +5,19 @@ import (
 	"fmt"
 )
 
-func (f Format) Parser(data string) (map[string]interface{}, error) {
-	parserFunc := parsersMap[f]
-	return parserFunc(data)
+type Parser struct{}
+
+func NewParser() Parser {
+	return Parser{}
 }
-
-func Parse(format Format, inputData string) (string, error) {
-	// el switch pero con map
-	jsonInputData, err := format.Parser(inputData)
-
+func (p Parser) Parse(format Format, inputData string) (string, error) {
+	a := parsersMap[format]
+	data, err := a.Parser(inputData)
 	if err != nil {
-		return "", fmt.Errorf("parse input: %w", err)
+		return "", err
 	}
 
-	j, err := json.Marshal(jsonInputData)
+	j, err := json.Marshal(data)
 	if err != nil {
 		return "", fmt.Errorf("parse json: %w", err)
 	}

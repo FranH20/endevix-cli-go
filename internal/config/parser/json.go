@@ -2,18 +2,34 @@ package parser
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
-func JsonToMap(jsonData string) (map[string]interface{}, error) {
-	var structJsonData map[string]interface{}
+type JsonParser struct {
+	rawJson      string
+	FormatedData map[string]interface{}
+}
 
-	err := json.Unmarshal([]byte(jsonData), &structJsonData)
+func NewJsonParser() *JsonParser {
+	return &JsonParser{}
+}
+
+func (j *JsonParser) Parser(raw string) (map[string]interface{}, error) {
+	err := j.ToJson(raw)
 	if err != nil {
-		fmt.Println("error:", err)
 		return nil, err
 	}
 
-	fmt.Println("Parsed JSON data:", structJsonData)
-	return structJsonData, nil
+	return j.FormatedData, nil
+}
+
+func (j *JsonParser) ToJson(raw string) error {
+	var rawData map[string]interface{}
+	err := json.Unmarshal([]byte(raw), &rawData)
+	if err != nil {
+		return err
+	}
+
+	j.FormatedData = rawData
+	j.rawJson = raw
+	return nil
 }
